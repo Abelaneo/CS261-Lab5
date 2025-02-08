@@ -12,20 +12,15 @@
 
 #include "list.h"
 
-int main() {
-	
+int main() {	
   /*   Modify to use an iterator  */ 
   
   struct list* list = list_setup();
-  struct link* curr = list->head;  /* This line generates a compiler error. */
+  struct list_iterator* itr = list_iterator_create(list); 
   int i = 0;
 
-  while (curr != NULL) {
-    /*
-     * The next two lines each generate a compiler error.
-     */
-    printf("== list[%2d]: %d\n", i, curr->val);
-    curr = curr->next;
+  while (list_iterator_has_next(itr) == 1) {
+    printf("== list[%2d]: %d\n", i, list_iterator_next(itr));
     i++;
   }
 

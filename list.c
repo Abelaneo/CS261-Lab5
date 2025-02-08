@@ -38,7 +38,9 @@ struct list {
  * current iteration.
  */
 
-/* ---  ADD --- */
+struct list_iterator {
+    struct link* curr; 
+};
 
 /*
  * This function allocates, initializes, and fills a small linked list and
@@ -61,36 +63,41 @@ struct list* list_setup() {
 }
 
 /*
- * This function allocates a list iterator, initializes it to start iteration
+ * This function allocates a lst iterator, initializes it to start iteration
  * at the beginning of the specified list, and returns a pointer to the
  * iterator.
- 
+ */
+
 struct list_iterator* list_iterator_create(struct list* list) {
-    ---  ADD  ---- 
-  
-  
-  
+    struct list_iterator* itr = malloc(sizeof(struct list_iterator));
+    itr->curr = list->head;
+    return itr;
 }
-*/ 
+
 
 /*
  * This function is used to indicate whether an iterator has more elements to
  * examine.  It returns 1 if there are more elements to examine for itr and 0
  * if there are no more elements to examine.
  */
- /*
+
 int list_iterator_has_next(struct list_iterator* itr) {
-  --- ADD ---
+    if (itr->curr == NULL) {
+	return 0;
+    }
+    return 1;
 }
-*/
+
 
 /*
  * This function returns the value associated with the current element in an
  * iterator's iteration and advances the iterator to the element in the list.
  */
-/*
+
 int list_iterator_next(struct list_iterator* itr) {
-  -- ADD --- 
+    int temp = itr->curr->val;
+    itr->curr = itr->curr->next;
+    return temp;
 }
-*/
+
 
